@@ -78,6 +78,7 @@ class LinkedList {
         }
         else {
             console.error("Only the head remains. Nothing left to pop. Create new list instead.")
+            LinkedList.nodeNum++;
         }
     }
 
@@ -132,6 +133,39 @@ class LinkedList {
         console.log(totalString);
         return totalString;
     }
+
+    insertAt(index, value) {
+        LinkedList.nodeNum++;
+        if (index > LinkedList.nodeNum) {
+            LinkedList.nodeNum--;
+            return console.error("Not a valid index for insertion");
+        }
+        if (index === 0 || this.head === null) {
+            return this.prepend(value);
+        }
+        if (index === LinkedList.nodeNum) {
+            return this.append(value);
+        }
+
+        let i = 0;
+        const newNode = new Node(value);
+        let currentNode = this.head;
+
+        while (i != index - 1) {
+            currentNode = currentNode.nextNode; //2
+            i++;
+        }
+
+        const attachedNode = currentNode.nextNode //3
+
+        currentNode.nextNode = newNode;
+        newNode.nextNode = attachedNode;
+
+        console.log(currentNode);
+        console.log(attachedNode);
+
+    }
+
 }
 
 class Node {
@@ -147,6 +181,7 @@ newList.prepend("first");
 newList.append("second");
 newList.append("third");
 newList.prepend("zero");
+newList.insertAt(3, "second two")
 newList.append("End");
 newList.toString();
 
