@@ -5,6 +5,7 @@ class LinkedList {
     constructor(name) {
         this.name = name;
         this.head = null;
+        this.tail = null;
     }
 
     append(nodeName) {
@@ -12,13 +13,33 @@ class LinkedList {
         const newNode = new Node(nodeName);
         if (this.head === null) {
             this.head = newNode;
+            this.tail = newNode;
+        }
+        else {
+            const tailNode = new Node(nodeName);
+            this.tail.nextNode = tailNode;
+            this.tail = tailNode;
+            // if (this.head.nextNode.nextNode === null) {
+            //     console.log("ping")
+            //     this.tail = this.head.nextNode;
+            // }
+            // else {
+                
+            // }
         }
     }
 
     prepend(nodeName) {
         LinkedList.nodeNum++;
         const newNode = new Node(nodeName);
+        if (this.head === null) {
+            this.head = newNode;
+            this.tail = newNode;
+        }
+        else {
+        newNode.nextNode = this.head;
         this.head = newNode;
+        }
     }
 
     size() {
@@ -26,7 +47,13 @@ class LinkedList {
     }
 
     getHead() {
-        console.log(this.head)
+        console.log("Head Node:")
+        console.log(this.head);
+    }
+
+    getTail() {
+        console.log("Tail Node:")
+        console.log(this.tail);
     }
     
 
@@ -42,10 +69,14 @@ class Node {
 
 const newList = new LinkedList("Default");
 console.log(newList);
-newList.append("test");
+newList.prepend("first");
+newList.append("second");
+newList.append("third");
+newList.prepend("zero");
+newList.append("End");
+
+
 newList.getHead();
-console.log(newList);
-newList.prepend("secondary");
+newList.getTail();
 newList.size();
-newList.getHead();
 
