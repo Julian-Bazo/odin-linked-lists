@@ -19,13 +19,6 @@ class LinkedList {
             const tailNode = new Node(nodeName);
             this.tail.nextNode = tailNode;
             this.tail = tailNode;
-            // if (this.head.nextNode.nextNode === null) {
-            //     console.log("ping")
-            //     this.tail = this.head.nextNode;
-            // }
-            // else {
-                
-            // }
         }
     }
 
@@ -88,6 +81,22 @@ class LinkedList {
         }
     }
 
+    contains(value) {
+        let i = 0;
+        let currentNode = this.head;
+        let valuePresent = false;
+        while (i <= LinkedList.nodeNum - 1) {
+            if (currentNode.value === value) {
+                valuePresent = true;
+            }
+            currentNode = currentNode.nextNode;
+            i++;
+        }
+        console.log("Value present?");
+        console.log(valuePresent);
+        return valuePresent;
+    }
+
 }
 
 class Node {
@@ -106,10 +115,11 @@ newList.prepend("zero");
 newList.append("End");
 newList.at(4);
 newList.pop();
+newList.contains("End");
+
 
 
 
 newList.getHead();
 newList.getTail();
 newList.size();
-
