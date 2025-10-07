@@ -97,6 +97,25 @@ class LinkedList {
         return valuePresent;
     }
 
+    find(value) {
+        if (this.contains(value) === false) {
+            console.log("No value present on list.");
+            return null
+        }
+        else {
+            let i = 0;
+            let currentNode = this.head;
+            while (i <= LinkedList.nodeNum) {
+                if (currentNode.value === value) {
+                    console.log(`${value} found at index ${i}`);
+                    return i;
+                }
+                currentNode = currentNode.nextNode;
+                i++
+            }
+        }
+    }
+
 }
 
 class Node {
@@ -116,10 +135,10 @@ newList.append("End");
 newList.at(4);
 newList.pop();
 newList.contains("End");
+newList.find("End");
 
 
 
-
-newList.getHead();
-newList.getTail();
-newList.size();
+// newList.getHead();
+// newList.getTail();
+// newList.size();
