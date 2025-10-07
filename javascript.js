@@ -75,10 +75,18 @@ class LinkedList {
         return currentNode;
     }
 
-    // pop() {
-    //     let newTail = at(LinkedList.nodeNum - 1);
-    //     this.tail = newTail;
-    // }
+    pop() {
+        LinkedList.nodeNum--;
+        if (LinkedList.nodeNum > 0) {
+        let newTail = this.at(LinkedList.nodeNum - 1);
+        this.tail = newTail;
+        console.log("Last node popped, new tail set:")
+        console.log(this.tail);
+        }
+        else {
+            console.error("Only the head remains. Nothing left to pop. Create new list instead.")
+        }
+    }
 
 }
 
@@ -97,7 +105,8 @@ newList.append("third");
 newList.prepend("zero");
 newList.append("End");
 newList.at(4);
-// newList.pop();
+newList.pop();
+
 
 
 newList.getHead();
