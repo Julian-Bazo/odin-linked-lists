@@ -123,28 +123,24 @@ class LinkedList {
         let totalString = "";
         let arrow = "--> ";
         while (i <= LinkedList.nodeNum) {
-            if (i === LinkedList.nodeNum) {
-                arrow = "";
-            }
             totalString += `(${JSON.stringify(currentNode.value)}) ${arrow}`;
             currentNode = currentNode.nextNode;
             i++;
         }
+        totalString += `null`
         console.log(totalString);
         return totalString;
     }
 
     insertAt(index, value) {
         LinkedList.nodeNum++;
-        if (index > LinkedList.nodeNum) {
+        if (index >= LinkedList.nodeNum || index < 0) {
             LinkedList.nodeNum--;
             return console.error("Not a valid index for insertion");
         }
         if (index === 0 || this.head === null) {
+            LinkedList.nodeNum--;
             return this.prepend(value);
-        }
-        if (index === LinkedList.nodeNum) {
-            return this.append(value);
         }
 
         let i = 0;
@@ -152,17 +148,41 @@ class LinkedList {
         let currentNode = this.head;
 
         while (i != index - 1) {
-            currentNode = currentNode.nextNode; //2
+            currentNode = currentNode.nextNode;
             i++;
         }
 
-        const attachedNode = currentNode.nextNode //3
+        const attachedNode = currentNode.nextNode;
 
         currentNode.nextNode = newNode;
         newNode.nextNode = attachedNode;
 
         console.log(currentNode);
         console.log(attachedNode);
+
+    }
+
+    removeAt(index) {
+        let i = 0;
+        let currentNode = this.head;
+        if (index === 0) {
+            this.head = this.head.nextNode;
+            currentNode = null;
+            LinkedList.nodeNum--;
+            return;
+        }
+        while (i != index - 1) {
+            currentNode = currentNode.nextNode; //0
+            i++;
+        }
+
+        console.log(currentNode);
+        console.log(currentNode.nextNode);
+        console.log(currentNode.nextNode.nextNode);
+        currentNode.nextNode = currentNode.nextNode.nextNode;
+        console.log(currentNode.nextNode);
+        LinkedList.nodeNum--;
+
 
     }
 
@@ -181,12 +201,14 @@ newList.prepend("first");
 newList.append("second");
 newList.append("third");
 newList.prepend("zero");
-newList.insertAt(3, "second two")
 newList.append("End");
+newList.insertAt(3, "second two")
+newList.removeAt(0);
 newList.toString();
+
 
 
 
 // newList.getHead();
 // newList.getTail();
-// newList.size();
+newList.size();
