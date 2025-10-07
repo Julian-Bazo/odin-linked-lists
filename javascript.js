@@ -116,6 +116,22 @@ class LinkedList {
         }
     }
 
+    toString() {
+        let i = 1;
+        let currentNode = this.head;
+        let totalString = "";
+        let arrow = "--> ";
+        while (i <= LinkedList.nodeNum) {
+            if (i === LinkedList.nodeNum) {
+                arrow = "";
+            }
+            totalString += `(${JSON.stringify(currentNode.value)}) ${arrow}`;
+            currentNode = currentNode.nextNode;
+            i++;
+        }
+        console.log(totalString);
+        return totalString;
+    }
 }
 
 class Node {
@@ -132,10 +148,7 @@ newList.append("second");
 newList.append("third");
 newList.prepend("zero");
 newList.append("End");
-newList.at(4);
-newList.pop();
-newList.contains("End");
-newList.find("End");
+newList.toString();
 
 
 
